@@ -40,4 +40,7 @@ public:
 	CAsyncSocket mysocket;
 	afx_msg void OnBnClickedButton3();
 	afx_msg void OnBnClickedButton4();
+	CButton StartButton;
+	CButton EndButton;
+	CButton ClearButton;
 };

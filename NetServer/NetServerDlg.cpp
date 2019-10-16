@@ -63,6 +63,9 @@ void CNetServerDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_EDIT2, Content);
+	DDX_Control(pDX, IDC_BUTTON1, StartButton);
+	DDX_Control(pDX, IDC_BUTTON3, EndButton);
+	DDX_Control(pDX, IDC_BUTTON4, ClearButton);
 }
 
 BEGIN_MESSAGE_MAP(CNetServerDlg, CDialogEx)
@@ -109,7 +112,8 @@ BOOL CNetServerDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// 设置小图标
 
 	// TODO: 在此添加额外的初始化代码
-
+	StartButton.EnableWindow(1);
+	EndButton.EnableWindow(0);
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
 
@@ -189,8 +193,13 @@ void CNetServerDlg::OnBnClickedButton1()
 	{
 		Content.SetWindowTextW(L"socket创建失败");
 	}
-	line = 0;
-    SetTimer(1, 1000, NULL);
+	else
+	{
+		StartButton.EnableWindow(0);
+		EndButton.EnableWindow(1);
+		line = 0;
+		SetTimer(1, 1000, NULL);
+	}
 }
 
 
@@ -240,6 +249,8 @@ void CNetServerDlg::OnTimer(UINT_PTR nIDEvent)
 void CNetServerDlg::OnBnClickedButton3()
 {
 	// TODO: 在此添加控件通知处理程序代码
+	StartButton.EnableWindow(1);
+	EndButton.EnableWindow(0);
 	KillTimer(1);
 	mysocket.Close();
 }
