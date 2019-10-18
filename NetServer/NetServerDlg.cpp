@@ -238,6 +238,11 @@ void CNetServerDlg::OnTimer(UINT_PTR nIDEvent)
 			Responese = strDate;
 			mysocket.SendTo(strDate, 100, uport, sIP, 0);
 		}
+		else
+		{
+			Responese = L"WRONG";
+			mysocket.SendTo(Responese, 100, uport, sIP, 0);
+		}
 		temp.Format(temp + sline + L":  IP=%s  PORT=%d   Receive=%s  Response=%s\r\n", sIP, uport, sResult,Responese);
 	}
 	Content.SetWindowTextW(temp);
